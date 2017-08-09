@@ -117,3 +117,57 @@ if __name__=='__main__':
 #  
 # if __name__ == '__main__':
 #     unittest.main()
+
+
+###########################understanding helper further:
+# class Perm_dup(object):
+#     
+#     def __init__(self):
+#         pass
+#     
+#     def permdup(self,chars):
+#         result=[]
+#         chars_count=self.count_chars(chars)
+#         #perms=self.permdup_helper('',chars_count,len(chars),result) #bug: this func not have any return values, the results are already in result
+#         #return perms 
+#         self.permdup_helper('',chars_count,len(chars),result)
+#         return result
+#     
+#     def permdup_helper(self, s, chars_count, n, result):
+#         if len(s)==n:  # n is the total length of ori string
+#             result.append(s) #stop case or base case
+#         
+#         for c in chars_count: ### this is important, that the for-loop of the keys of a dict 
+#             
+#             #update the chars_count:
+#             if chars_count[c] == 1:
+#                 del chars_count[c]
+#             elif chars_count[c] > 1:
+#                 chars_count[c] -=1
+#             
+#             self.permdup_helper(s+c, chars_count, n, result)
+#### for example: {'a':2, 'c':1}: for-loop it, will get a**, c**;;; then {'a':1, 'c':1} or {'a':2}, for the first {'a':1, 'c':1}, for-loop it, will get *a* or *c*
+#             # so the for-loop order will decide the order of the permutations, the same process is conducted in the sub-permutations
+
+#             #recover the chars_count to support the next same level interation in the for-loop:
+#             if not c in chars_count:
+#                 chars_count[c]=1
+#             elif c in chars_count:
+#                 chars_count[c] += 1
+#     
+#     def count_chars(self,chars):
+#         chars_count={} #init a dict
+#         for item in chars:
+#             if not item in chars_count:  ### not item in dict ,,,,not "item not in dict"
+#                 chars_count[item]=1
+#             else:
+#                 chars_count[item] += 1
+#         print chars_count
+#         return chars_count
+# 
+# def main():
+#     ts=Perm_dup()
+#     print ts.permdup('aaac')
+# 
+# if __name__=='__main__':
+#     main()
