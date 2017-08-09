@@ -2,7 +2,7 @@
 class PermChar(object):
     
     def PermChar_noDup(self,chars):
-        if len(chars)==1:
+        if len(chars)==1: # when len(before+after) ==1 which means that only one char left, no more permutations, just one 
             return chars #stop case, return to the recursion subfunc, the final depth of the recur func without runing the
         # following main recursion;;; after this ,it is still in the same level
         
@@ -12,7 +12,7 @@ class PermChar(object):
             before=chars[:i]
             after=chars[(i+1):]
             cur=chars[i]
-            subperms=self.PermChar_noDup(before+after) #sub-answer (for n-1)
+            subperms=self.PermChar_noDup(before+after) #sub-answer (for n-1), len(before+after) will be shorter and shorter
             perms=[cur+perm for perm in subperms] #remains contain all of the sub (n-1) perms;; current answer
             result.extend(perms) # there is a for-loop outside, and it saves charsss, so it should "extend", not "append"
         return result # return the sub and final;;; after this it can return to the last level
